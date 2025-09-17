@@ -103,106 +103,54 @@ static List<int> GenerateScale(int antalToner = 7)
 
 static void DrawKeysAndMenu(int octave)
 {
-    if (octave == -2)
+    static void DrawOctave(int octave)
     {
-        Console.Clear();
-        Console.WriteLine("Press P to play the scale");
-        Console.WriteLine("Press 0 to generate new scale");
-        Console.WriteLine("Press + to go up an octave");
-        Console.WriteLine("Press - to go down an octave");
-        Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
-        Console.WriteLine("| a | s | d | f | h | j | k | l |");
-        Console.WriteLine("|___|___|___|___|___|___|___|___|");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| * | * | - | - |   |   | * | * |");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine();
-        Console.WriteLine("Play something BEAUTIFUL!!");
+        if (octave == -2)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("| * | * | - | - |   |   | * | * |");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        else if (octave == -1)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("| * | * |   | - |   |   | * | * |");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        else if (octave == 0)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("| * | * |   |   |   |   | * | * |");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        else if (octave == 1)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("| * | * |   |   | + |   | * | * |");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+        else if (octave == 2)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("| * | * |   |   | + | + | * | * |");
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
     }
-    else if (octave == -1)
-    {
-        Console.Clear();
-        Console.WriteLine("Press P to play the scale");
-        Console.WriteLine("Press 0 to generate new scale");
-        Console.WriteLine("Press + to go up an octave");
-        Console.WriteLine("Press - to go down an octave");
-        Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
-        Console.WriteLine("| a | s | d | f | h | j | k | l |");
-        Console.WriteLine("|___|___|___|___|___|___|___|___|");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| * | * |   | - |   |   | * | * |");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine();
-        Console.WriteLine("Play something BEAUTIFUL!!");
-    }
-    else if (octave == 0)
-    {
-        Console.Clear();
-        Console.WriteLine("Press P to play the scale");
-        Console.WriteLine("Press 0 to generate new scale");
-        Console.WriteLine("Press + to go up an octave");
-        Console.WriteLine("Press - to go down an octave");
-        Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
-        Console.WriteLine("| a | s | d | f | h | j | k | l |");
-        Console.WriteLine("|___|___|___|___|___|___|___|___|");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| * | * |   |   |   |   | * | * |");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine();
-        Console.WriteLine("Play something BEAUTIFUL!!");
-    }
-    else if (octave == 1)
-    {
-        Console.Clear();
-        Console.WriteLine("Press P to play the scale");
-        Console.WriteLine("Press 0 to generate new scale");
-        Console.WriteLine("Press + to go up an octave");
-        Console.WriteLine("Press - to go down an octave");
-        Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
-        Console.WriteLine("| a | s | d | f | h | j | k | l |");
-        Console.WriteLine("|___|___|___|___|___|___|___|___|");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| * | * |   |   | + |   | * | * |");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine();
-        Console.WriteLine("Play something BEAUTIFUL!!");
-    }
-    else if (octave == 2)
-    {
-        Console.Clear();
-        Console.WriteLine("Press P to play the scale");
-        Console.WriteLine("Press 0 to generate new scale");
-        Console.WriteLine("Press + to go up an octave");
-        Console.WriteLine("Press - to go down an octave");
-        Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
-        Console.WriteLine("| a | s | d | f | h | j | k | l |");
-        Console.WriteLine("|___|___|___|___|___|___|___|___|");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("| * | * |   |   | + | + | * | * |");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine();
-        Console.WriteLine("Play something BEAUTIFUL!!");
-    }
+    Console.Clear();
+    Console.WriteLine("Press P to play the scale");
+    Console.WriteLine("Press 0 to generate new scale");
+    Console.WriteLine("Press + to go up an octave");
+    Console.WriteLine("Press - to go down an octave");
+    Console.WriteLine();
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 1'|");
+    Console.ForegroundColor = ConsoleColor.Gray;
+    Console.WriteLine("|^^^|^^^|^^^|^^^|^^^|^^^|^^^|^^^|");
+    Console.WriteLine("| a | s | d | f | h | j | k | l |");
+    Console.WriteLine("|___|___|___|___|___|___|___|___|");
+    DrawOctave(octave);
+    Console.WriteLine();
+    Console.WriteLine("Play something BEAUTIFUL!!");
 }
 static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
 {
