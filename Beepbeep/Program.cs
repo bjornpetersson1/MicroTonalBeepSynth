@@ -152,10 +152,137 @@ static void DrawKeysAndMenu(int octave)
     Console.WriteLine();
     Console.WriteLine("Play something BEAUTIFUL!!");
 }
+
+static string[] GenerateNoteNames(List<int> generatedOneOctaveScale, int octaveIs)
+{
+    static string NameAndOffset(int hertz)
+    {
+        int[] kromatiskaSkalan = new int[12];
+        kromatiskaSkalan[0] = 440;
+        kromatiskaSkalan[1] = 466;
+        kromatiskaSkalan[2] = 494;
+        kromatiskaSkalan[3] = 523;
+        kromatiskaSkalan[4] = 554;
+        kromatiskaSkalan[5] = 587;
+        kromatiskaSkalan[6] = 622;
+        kromatiskaSkalan[7] = 659;
+        kromatiskaSkalan[8] = 698;
+        kromatiskaSkalan[9] = 740;
+        kromatiskaSkalan[10] = 784;
+        kromatiskaSkalan[11] = 831;
+        string result = string.Empty;
+        int check = 0;
+        for (global::System.Int32 i = 0; i < kromatiskaSkalan.Length; i++)
+        {
+            int realDifference = hertz - kromatiskaSkalan[i];
+            int absDifference = Math.Abs(realDifference);
+            if (i == 0) check = absDifference;
+            else if (absDifference < check) check = absDifference;
+        }
+        int index = Array.IndexOf(kromatiskaSkalan, hertz - check);
+        bool isPositive = true;
+        if (index == -1)
+        {
+            Array.IndexOf(kromatiskaSkalan, hertz + check);
+            isPositive = !isPositive;
+        }
+        switch (index)
+        {
+            case 0:
+                result = "A";
+                break;
+            case 1:
+                result = "Bb";
+                break;
+            case 2:
+                result = "B";
+                break;
+            case 3:
+                result = "C";
+                break;
+            case 4:
+                result = "Db";
+                break;
+            case 5:
+                result = "D";
+                break;
+            case 6:
+                result = "Eb";
+                break;
+            case 7:
+                result = "E";
+                break;
+            case 8:
+                result = "F";
+                break;
+            case 9:
+                result = "Gb";
+                break;
+            case 10:
+                result = "G";
+                break;
+            case 11:
+                result = "Ab";
+                break;
+        }
+        if (isPositive) result += $" -{check}";
+        else result += $" +{check}";
+
+        return result;
+    }
+    int[] hertzScale = new int[generatedOneOctaveScale.Count];
+    string[] result = new string[generatedOneOctaveScale.Count + 1];
+
+    if (octaveIs == -2)
+    {
+        for (global::System.Int32 i = 0; i < generatedOneOctaveScale.Count; i++)
+        {
+            hertzScale[i] = generatedOneOctaveScale[i] * 4;
+            result[i] = NameAndOffset(hertzScale[i]);
+        }
+    }
+    else if (octaveIs == -1)
+    {
+        for (global::System.Int32 i = 0; i < generatedOneOctaveScale.Count; i++)
+        {
+            hertzScale[i] = generatedOneOctaveScale[i] * 2;
+            result[i] = NameAndOffset(hertzScale[i]);
+        }
+    }
+    else if (octaveIs == 0)
+    {
+        for (global::System.Int32 i = 0; i < generatedOneOctaveScale.Count; i++)
+        {
+            hertzScale[i] = generatedOneOctaveScale[i];
+            result[i] = NameAndOffset(hertzScale[i]);
+        }
+    }
+    else if (octaveIs == 1)
+    {
+        for (global::System.Int32 i = 0; i < generatedOneOctaveScale.Count; i++)
+        {
+            hertzScale[i] = generatedOneOctaveScale[i] / 2;
+            result[i] = NameAndOffset(hertzScale[i]);
+        }
+    }
+    else if (octaveIs == 2)
+    {
+        for (global::System.Int32 i = 0; i < generatedOneOctaveScale.Count; i++)
+        {
+            hertzScale[i] = generatedOneOctaveScale[i] / 4;
+            result[i] = NameAndOffset(hertzScale[i]);
+        }
+    }
+    result[result.Length-1] = result[0];
+
+    return result;
+}
+
 static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
 {
     int octaveIs = 0;
     DrawKeysAndMenu(octaveIs);
+    string[] noteNames = GenerateNoteNames(OneOctaveScale, octaveIs);
     while (true)
     {
         Console.CursorVisible = false;
@@ -170,11 +297,12 @@ static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
         if (press.Key == ConsoleKey.L) Console.Beep(OneOctaveScale[7], duration);
         if (press.Key == ConsoleKey.P)
         {
-            for (global::System.Int32 i = 0; i < OneOctaveScale.Count; i++)
+            for (global::System.Int32 i = 0; i < noteNames.Length; i++)
             {
                 Console.Clear();
-                Console.WriteLine(i+1);
-                Console.Beep(OneOctaveScale[i], duration);
+                Console.WriteLine(noteNames[i]);
+                if (i == noteNames.Length-1) Console.Beep(OneOctaveScale[0] * 2, duration);
+                else Console.Beep(OneOctaveScale[i], duration);
                 Thread.Sleep(duration+200);
 
             }
