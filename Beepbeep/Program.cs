@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 
+//Fixa tonnamnsbuggen, blur för många toner samt alla får inte namn
 static List<int> GenerateScale(int antalToner = 7)
 {
     Random random = new Random();
