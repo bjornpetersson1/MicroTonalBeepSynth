@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 
-//Fixa tonnamnsbuggen, blur för många toner samt alla får inte namn
 static List<int> GenerateScale(int antalToner = 7)
 {
     Random random = new Random();
@@ -37,17 +36,14 @@ static List<int> GenerateScale(int antalToner = 7)
         if (plusMinus == 0)
         {
             tonMicroshift = kromatiskaSkalan[skalResult[i]] - microShift;
-            //Console.WriteLine(skalResult[i] + " - " + microShift + " hz");
         }
         if (plusMinus == 1)
         {
             tonMicroshift = kromatiskaSkalan[(int)skalResult[i]] + microShift;
-            //Console.WriteLine(skalResult[i] + " + " + microShift + " hz");
         }
         if (plusMinus == 2)
         {
             tonMicroshift = kromatiskaSkalan[skalResult[i]];
-            //Console.WriteLine(skalResult[i]);
         }
         if (i == 0)
         {
@@ -184,7 +180,7 @@ static string[] GenerateNoteNames(List<int> generatedOneOctaveScale, int octaveI
         bool isPositive = true;
         if (index == -1)
         {
-            Array.IndexOf(kromatiskaSkalan, hertz + check);
+            index = Array.IndexOf(kromatiskaSkalan, hertz + check);
             isPositive = !isPositive;
         }
         switch (index)
@@ -226,13 +222,14 @@ static string[] GenerateNoteNames(List<int> generatedOneOctaveScale, int octaveI
                 result = "Ab";
                 break;
         }
-        if (isPositive) result += $" -{check}";
-        else result += $" +{check}";
+        if (check == 0) ;
+        else if (isPositive) result += $" - {check}";
+        else result += $" + {check}";
 
         return result;
     }
     int[] hertzScale = new int[generatedOneOctaveScale.Count];
-    string[] result = new string[generatedOneOctaveScale.Count + 1];
+    string[] result = new string[generatedOneOctaveScale.Count];
 
     if (octaveIs == -2)
     {
