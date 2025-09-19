@@ -284,6 +284,7 @@ static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
     while (true)
     {
         Console.CursorVisible = false;
+        //Skriv om till switch o character till intiger
         ConsoleKeyInfo press = Console.ReadKey(true);
         if (press.Key == ConsoleKey.A) Console.Beep(OneOctaveScale[0], duration);
         if (press.Key == ConsoleKey.S) Console.Beep(OneOctaveScale[1], duration);
@@ -304,26 +305,7 @@ static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
                 Thread.Sleep(duration+200);
 
             }
-            if (octaveIs == 2)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 0)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == -1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == -2)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
+            DrawKeysAndMenu(octaveIs);
 
         }
         if (press.Key == ConsoleKey.OemPlus)
@@ -334,22 +316,7 @@ static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
                 OneOctaveScale[i] *= 2;
             }
             octaveIs++;
-            if (octaveIs == 1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 2)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 0)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == -1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
+            DrawKeysAndMenu(octaveIs);
         }
         if (press.Key == ConsoleKey.OemMinus)
         {
@@ -359,22 +326,7 @@ static void PlaySynth(List<int> OneOctaveScale, int duration = 500)
                 OneOctaveScale[i] /= 2;
             }
             octaveIs--;
-            if (octaveIs == -1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == -2)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 0)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
-            else if (octaveIs == 1)
-            {
-                DrawKeysAndMenu(octaveIs);
-            }
+            DrawKeysAndMenu(octaveIs);
         }
         if (press.Key == ConsoleKey.D0)
         {
